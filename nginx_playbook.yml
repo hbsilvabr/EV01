@@ -1,0 +1,14 @@
+---
+- name: Nginx Playbook
+  hosts: all
+  become: yes
+  tasks:
+  - name: Instalar nginx
+    apt:
+      name: nginx
+      state: latest
+  - name: Iniciar nginx e definir para iniciar no boot
+    ansible.builtin.systemd_service:
+      name: nginx
+      state: started
+      enabled: true
